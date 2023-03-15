@@ -76,7 +76,8 @@ const publishFunctions = async (entries) =>
           .on("end", () => {
             console.log(`Zip of ${f} complete (${data.length}).`);
             const sha256 = shasum.digest("base64");
-            const FunctionName = `samepage-network_${f}_post`;
+            // const FunctionName = `extensions-monday-${f}_post`;
+            const FunctionName = `samepage-network_monday_post`;
             getFunction({
               FunctionName,
             })
