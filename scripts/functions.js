@@ -1,6 +1,8 @@
 const esbuild = require("esbuild").build;
 const fs = require("fs");
 const Lambda = require("@aws-sdk/client-lambda").Lambda;
+const archiver = require("archiver");
+const crypto = require("crypto");
 
 const lambda = new Lambda({});
 

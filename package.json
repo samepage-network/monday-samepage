@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/samepage-network/monday-samepage#readme",
   "dependencies": {
+    "archiver": "^5.3.1",
     "monday-sdk-js": "^0.3.0",
     "samepage": "^0.45.6"
   },
