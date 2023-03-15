@@ -24,4 +24,4 @@ jobs:
       - name: install
         run: npm install
       - name: build
-        run: npx samepage build --review scripts/functions.js --root $(pwd)
+        run: npx samepage build --env MONDAY_PERSONAL_TOKEN
