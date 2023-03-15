@@ -28,6 +28,6 @@
   "homepage": "https://github.com/samepage-network/monday-samepage#readme",
   "dependencies": {
     "monday-sdk-js": "^0.3.0",
-    "samepage": "^0.46.1"
+    "samepage": "^0.46.2"
   }
 }
