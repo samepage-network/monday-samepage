@@ -107,5 +107,5 @@ const publishFunctions = async (entries) =>
   );
 
 module.exports = () => {
-  buildFunctions().then(publishFunctions);
+  return buildFunctions().then(publishFunctions);
 };
