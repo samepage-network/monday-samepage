@@ -1,6 +1,6 @@
 {
   "name": "monday-samepage",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Official Monday.com client into the inter-tool protocol, SamePage.",
   "main": "./dist/index.js",
   "scripts": {
