@@ -1,5 +1,6 @@
 import initMondayClient from "monday-sdk-js";
 import { z } from "zod";
+import createAPIGatewayProxyHandler from "samepage/backend/createAPIGatewayProxyHandler";
 
 const zSchema = z.object({
   boards: z
@@ -7,7 +8,7 @@ const zSchema = z.object({
     .array(),
 });
 
-const query = () => {
+const query = async () => {
   const mondayClient = initMondayClient();
   mondayClient.setToken(process.env.MONDAY_PERSONAL_TOKEN || "");
   const q = `query{
@@ -18,9 +19,10 @@ const query = () => {
       }
     }
   }`;
-  return mondayClient
+  const boards = await mondayClient
     .api(q)
     .then((r) => zSchema.parse(r.data).boards.map((b) => b.items));
+  return { boards };
 };
 
-export default query;
+export default createAPIGatewayProxyHandler(query);
