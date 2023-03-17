@@ -1,12 +1,5 @@
 import initMondayClient from "monday-sdk-js";
-import { z } from "zod";
 import createAPIGatewayProxyHandler from "samepage/backend/createAPIGatewayProxyHandler";
-
-const zSchema = z.object({
-  boards: z
-    .object({ items: z.object({ id: z.string(), name: z.string() }).array() })
-    .array(),
-});
 
 const query = async () => {
   const mondayClient = initMondayClient();
@@ -16,13 +9,21 @@ const query = async () => {
       items {
         id
         name
+        column_values {
+          id
+          text
+          title
+          type
+          value
+          description
+        }
       }
+      name
     }
   }`;
-  const boards = await mondayClient
+  return await mondayClient
     .api(q)
-    .then((r) => zSchema.parse(r.data).boards.map((b) => b.items));
-  return { boards };
+    .then((r) => r.data as Record<string, unknown>);
 };
 
 export default createAPIGatewayProxyHandler(query);
