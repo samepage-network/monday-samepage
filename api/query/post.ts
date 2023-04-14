@@ -21,9 +21,14 @@ const query = async () => {
       name
     }
   }`;
-  return await mondayClient
-    .api(q)
-    .then((r) => r.data as Record<string, unknown>);
+  return await mondayClient.api(q).then((r) => {
+    // @ts-ignore
+    if (r.error_code) {
+      // @ts-ignore
+      throw new Error(r.error_message);
+    }
+    return (r.data as Record<string, unknown>) || {};
+  });
 };
 
 export default createAPIGatewayProxyHandler(query);
